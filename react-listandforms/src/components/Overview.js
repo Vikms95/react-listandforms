@@ -3,8 +3,12 @@ import React,{Component} from "react"
 class Overview extends Component{
   
     renderTasks(){
+        console.log(this.props.taskList)
         return this.props.taskList.map(task =>{
-            return <li key={task.id}>{task.index} {task.text}</li>
+            return <li key={task.id}>
+                         {task.index} - {task.text}  
+                         <button onClick={()=> this.props.handleDelete(task.id)} > Delete </button>
+                    </li>
         })
     }
 

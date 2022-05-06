@@ -13,12 +13,14 @@ class App extends Component{
       },
       tasks: []
     }
-    this.updateData = this.updateData.bind(this)
+    this.updateTask = this.updateTask.bind(this)
     this.addNewTask = this.addNewTask.bind(this)
+    this.deleteTask = this.deleteTask.bind(this)
   }
 
   addNewTask(){
-    console.log(this.state.currentTask.index)
+    const input = document.getElementById('name')
+    input.value = ""
     this.setState({
       currentTask: {
         text:"",
@@ -30,7 +32,7 @@ class App extends Component{
 
   }
 
-  updateData(event){
+  updateTask(event){
     this.setState({
       currentTask : {
         text: event.target.value,
@@ -40,15 +42,22 @@ class App extends Component{
     })
   }
 
+  deleteTask(id){
+    this.setState({
+      tasks: this.state.tasks.filter(task => task.id !== id)
+  
+    })
+  }
+
   render(){
     return (
       <div>
         <form>
             <label htmlFor="task">Task</label>
-            <input id="name" name="task" type="text" onChange={this.updateData}></input>
+            <input id="name" name="task" type="text" onChange={this.updateTask}></input>
         <button type="button"  onClick={this.addNewTask}>SUBMIT</button>
         </form>
-        <Overview taskList={this.state.tasks}/>
+        <Overview taskList={this.state.tasks} handleDelete={this.deleteTask}/>
       </div>
     );
    }
