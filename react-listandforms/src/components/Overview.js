@@ -2,15 +2,17 @@ import React,{Component} from "react"
 
 class Overview extends Component{
   
-    renderInputValues(){// Renders all values from props.taskList and wraps them with <li> with map method
-      let newArray = Object.keys(this.props.taskList).map(key => this.props.taskList[key])
-      return newArray.map(task=> <li>{task}</li>)
+    renderTasks(){
+        console.log(this.props.taskList)
+        return this.props.taskList.map(task =>{
+            return <li key={task.id}>{task.text}</li>
+        })
     }
 
     render(){
         return(
             <ol>
-                {this.renderInputValues()}
+                {this.renderTasks()}
             </ol>
         )
     }
