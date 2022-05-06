@@ -3,11 +3,27 @@ import React,{Component} from "react"
 class Overview extends Component{
   
     renderTasks(){
-        console.log(this.props.taskList)
         return this.props.taskList.map(task =>{
             return <li key={task.id}>
                          {task.index} - {task.text}  
-                         <button onClick={()=> this.props.handleDelete(task.id)} > Delete </button>
+                         {this.props.isEditMode 
+                         ?  <button 
+                                onClick={()=>
+                                this.props.addNewTask(task.id)}
+                                > Edit 
+                            </button>
+                        : <button 
+                            onClick={()=>
+                            this.props.handleEdit(task.id)}
+                            > Edit 
+                          </button>    
+                        }
+
+                        <button
+                          onClick={(event)=>
+                           this.props.handleDelete(task.id, event)}
+                            > Delete 
+                        </button>
                     </li>
         })
     }
