@@ -8,19 +8,22 @@ class App extends Component{
     this.state = {
       currentTask: {
         text: "",
-        id: uniqid()
+        id: uniqid(),
+        index: 0
       },
-      tasks: [{text:"hi",id:"klsdjs"},{text:"hi",id:"klsdjass"},{text:"hi",id:"klsdasdsajs"}]
+      tasks: []
     }
     this.updateData = this.updateData.bind(this)
     this.addNewTask = this.addNewTask.bind(this)
   }
 
   addNewTask(){
+    console.log(this.state.currentTask.index)
     this.setState({
       currentTask: {
         text:"",
-        id:uniqid
+        id:uniqid(),
+        index: this.state.currentTask.index + 1
       },
       tasks: [...this.state.tasks, this.state.currentTask]
     })
@@ -31,7 +34,8 @@ class App extends Component{
     this.setState({
       currentTask : {
         text: event.target.value,
-        id: this.state.currentTask.id
+        id: this.state.currentTask.id,
+        index: this.state.currentTask.index
       }
     })
   }
