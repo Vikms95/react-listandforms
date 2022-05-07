@@ -2,7 +2,7 @@ import React,{Component} from "react"
 
 class Overview extends Component{
   
-    renderTasks(){
+    render(){
         return this.props.taskList.map(task =>{
             return <li key={task.id}>
                          {task.index} - {task.text}  
